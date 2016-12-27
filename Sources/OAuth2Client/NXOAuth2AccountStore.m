@@ -185,6 +185,11 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
 - (void)requestAccessToAccountWithType:(NSString *)accountType;
 {
     NXOAuth2Client *client = [self pendingOAuthClientForAccountType:accountType];
+	
+	if ([accountType isEqualToString:@"soundcloud"] == YES) {
+		client.desiredScope = [NSSet setWithObject:@"non-expiring"];
+	}
+	
     [client requestAccess];
 }
 
